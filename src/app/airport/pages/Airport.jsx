@@ -13,6 +13,7 @@ export function Airport() {
     groupAirportsByDepartmentCity,
     groupAirportsByRegionDepartmentCityType,
     getFinalStructure,
+    timeAirports
   } = useContext(ApiColombiaContext);
 
   const groupedAirports1 = useMemo(
@@ -34,7 +35,7 @@ export function Airport() {
     <>
       <div className='stats-container'>
         <CardStats title='Cantidad de aeropuertos' stats={airports.length} />
-        <CardStats title='Tiempo de respuesta' stats='1.25s' />
+        <CardStats title='Tiempo de respuesta' stats={`${timeAirports}ms`} />
       </div>
       <div className='table-data'>
         <AirportsTypeChart airports={groupedAirports2} />

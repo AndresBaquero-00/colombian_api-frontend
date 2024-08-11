@@ -16,50 +16,52 @@ export function PoliticalPartiesChart({ parties }) {
     <div className='card'>
       <h1 className='title'>Presidentes por Partido</h1>
       <div className='parties-chart'>
-        <Chart
-          options={{
-            colors: utils.colorsChart,
-            dataLabels: {
-              enabled: false,
-            },
-            plotOptions: {
-              pie: {
-                donut: {
-                  labels: {
-                    show: true,
-                    name: {
+        <div className='chart'>
+          <Chart
+            options={{
+              colors: utils.colorsChart,
+              dataLabels: {
+                enabled: false,
+              },
+              plotOptions: {
+                pie: {
+                  donut: {
+                    labels: {
                       show: true,
-                      fontFamily: 'Poppins',
-                      offsetY: -15,
-                    },
-                    value: {
-                      show: true,
-                      fontWeight: 700,
-                      fontSize: '2.3rem',
-                      fontFamily: 'Poppins',
-                      offsetY: 15,
-                    },
-                    total: {
-                      show: true,
-                      color: '#637381',
-                      fontWeight: 500,
-                      fontFamily: 'Poppins',
-                      fontSize: '1rem',
+                      name: {
+                        show: true,
+                        fontFamily: 'Poppins',
+                        offsetY: -15,
+                      },
+                      value: {
+                        show: true,
+                        fontWeight: 700,
+                        fontSize: '2.3rem',
+                        fontFamily: 'Poppins',
+                        offsetY: 15,
+                      },
+                      total: {
+                        show: true,
+                        color: '#637381',
+                        fontWeight: 500,
+                        fontFamily: 'Poppins',
+                        fontSize: '1rem',
+                      },
                     },
                   },
                 },
               },
-            },
-            legend: {
-              show: false,
-            },
-            labels: labels,
-            series: series,
-          }}
-          series={series}
-          type='donut'
-          width='400'
-        />
+              legend: {
+                show: false,
+              },
+              labels: labels,
+              series: series,
+            }}
+            series={series}
+            type='donut'
+            width='350'
+          />
+        </div>
         <div className='parties-legend'>
           {labels.map((label, i) => (
             <div key={UUID()} className='legend'>

@@ -13,6 +13,10 @@ export const ApiColombiaProvider = ({ children }) => {
   const [regions, setRegions] = useState([]);
   const [departments, setDepartments] = useState([]);
 
+  const [timePresidents, setTimePresidents] = useState(0);
+  const [timeAirports, setTimeAirports] = useState(0);
+  const [timeTouristicAttractions, setTimeTouristicAttractions] = useState(0);
+
   const groupPresidentsByPoliticalParty = useCallback(() => {
     const groups = {};
     presidents.forEach((president) => {
@@ -157,15 +161,26 @@ export const ApiColombiaProvider = ({ children }) => {
   }, [groupAirportsByRegionDepartmentCityType]);
 
   useEffect(() => {
-    actions.getPresidents().then((res) => setPresidents(res));
-    actions.getAirports().then((res) => setAirports(res));
+    actions.getPresidents().then((res) => {
+      setPresidents(res.data);
+      setTimePresidents(res.time);
+    });
+    actions.getAirports().then((res) => {
+      setAirports(res.data);
+      setTimeAirports(res.time);
+    });
 
-    actions
-      .getTouristicAttractions()
-      .then((res) => setTouristicAttractions(res));
+    actions.getTouristicAttractions().then((res) => {
+      setTouristicAttractions(res.data);
+      setTimeTouristicAttractions(res.time);
+    });
 
-    actions.getRegions().then((res) => setRegions(res));
-    actions.getDepartments().then((res) => setDepartments(res));
+    actions.getRegions().then((res) => {
+      setRegions(res.data);
+    });
+    actions.getDepartments().then((res) => {
+      setDepartments(res.data);
+    });
   }, []);
 
   return (
@@ -174,11 +189,16 @@ export const ApiColombiaProvider = ({ children }) => {
         presidents,
         airports,
         touristicAttractions,
+
         groupPresidentsByPoliticalParty,
         groupTouristicAttractionsByDepartmentCity,
         groupAirportsByDepartmentCity,
         groupAirportsByRegionDepartmentCityType,
         getFinalStructure,
+
+        timePresidents,
+        timeAirports,
+        timeTouristicAttractions,
       }}
     >
       {children}

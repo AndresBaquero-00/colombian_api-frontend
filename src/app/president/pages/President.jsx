@@ -9,7 +9,7 @@ import { PoliticalPartiesChart } from '../components/PoliticalPartiesChart';
 import '../css/index.css';
 
 export function President() {
-  const { presidents, groupPresidentsByPoliticalParty } =
+  const { presidents, groupPresidentsByPoliticalParty, timePresidents } =
     useContext(ApiColombiaContext);
 
   const parties = useMemo(
@@ -21,7 +21,7 @@ export function President() {
     <>
       <div className='stats-container'>
         <CardStats title='Cantidad de presidentes' stats={presidents.length} />
-        <CardStats title='Tiempo de respuesta' stats='1.25s' />
+        <CardStats title='Tiempo de respuesta' stats={`${timePresidents}ms`} />
       </div>
       <div className='table-data'>
         <PresidentsTable presidents={presidents} />

@@ -7,7 +7,7 @@ import { GroupedAttractionsTable } from '../components/GroupedAttractionsTable';
 import { GroupedAttractionsChart } from '../components/GroupedAttractionsChart';
 
 export function Touristic() {
-  const { touristicAttractions, groupTouristicAttractionsByDepartmentCity } =
+  const { touristicAttractions, groupTouristicAttractionsByDepartmentCity, timeTouristicAttractions } =
     useContext(ApiColombiaContext);
 
   const groupedAttractions = useMemo(
@@ -22,7 +22,7 @@ export function Touristic() {
           title='Cantidad de atracciones'
           stats={touristicAttractions.length}
         />
-        <CardStats title='Tiempo de respuesta' stats='1.25s' />
+        <CardStats title='Tiempo de respuesta' stats={`${timeTouristicAttractions}ms`} />
       </div>
       <div className='table-data'>
         <TouristicAttractionsTable
